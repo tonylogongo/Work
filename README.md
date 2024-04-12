@@ -111,3 +111,47 @@ num_int = [int(element) for element in num_lists]
 total = sum(num_int * 2)
 
 print(total)
+
+----------- NEW CODE --------------
+
+# Function to calculate hotel cost
+def hotel_cost(num_nights):
+    # Assuming a price per night of £100
+    return num_nights * 100
+
+# Function to calculate plane cost
+def plane_cost(city_flight):
+    # Assigning flight costs based on city
+    if city_flight == "Spain":
+        return 500
+    elif city_flight == "Morroco":
+        return 700
+    elif city_flight == "Kenya":
+        return 1000
+    else:
+        return 0  # 0 will be the default return value if city not found
+
+# Function to calculate car rental cost
+def car_rental(rental_days):
+    # Daily rental cost of £50
+    return rental_days * 70
+
+# Function to calculate total holiday cost
+def holiday_cost(num_nights, city_flight, rental_days):
+    total_cost = hotel_cost(num_nights) + plane_cost(city_flight) + car_rental(rental_days)
+    return total_cost
+
+# Get user inputs
+city_flight = input("Enter the city you will be flying to (Kenya, Spain or Morroco): ")
+num_nights = int(input("Enter the number of nights you will be staying at a hotel: "))
+rental_days = int(input("Enter the number of days for which you will be hiring a car: "))
+
+# Calculate total holiday cost
+total_cost = holiday_cost(num_nights, city_flight, rental_days)
+
+# Print details about the holiday
+print("\nHoliday Details:")
+print(f"City of Flight: {city_flight}")
+print(f"Number of Nights in Hotel: {num_nights}")
+print(f"Number of Days for Car Rental: {rental_days}")
+print(f"Total Holiday Cost: £{total_cost}")
