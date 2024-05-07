@@ -155,3 +155,127 @@ print(f"City of Flight: {city_flight}")
 print(f"Number of Nights in Hotel: {num_nights}")
 print(f"Number of Days for Car Rental: {rental_days}")
 print(f"Total Holiday Cost: £{total_cost}")
+
+--------- NEW CODE ----------
+
+def linear_search(arr, target):
+    """Performs linear search to find the target element in the array."""
+    for i, num in enumerate(arr):
+        if num == target:
+            return i
+    return -1
+
+def insertion_sort(arr):
+    """Sorts the array using the insertion sort algorithm."""
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+# Given array
+arr = [27, -3, 4, 5, 35, 2, 1, -40, 7, 18, 9, -1, 16, 100]
+
+# Search for 9 using Linear Search
+index = linear_search(arr, 9)
+print("Index of 9 using Linear Search:", index)
+
+# Sort the array using Insertion Sort
+insertion_sort(arr)
+print("Sorted array using Insertion Sort:", arr)
+
+# Search for 9 in the sorted array using Binary Search
+def binary_search(arr, target):
+    """Performs binary search to find the target element in the sorted array."""
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+
+index_sorted = binary_search(arr, 9)
+print("Index of 9 in the sorted array using Binary Search:", index_sorted)
+
+---------- NEW CODE ---------
+
+class Album:
+    def __init__(self, album_name, number_of_songs, album_artist):
+        self.album_name = album_name
+        self.number_of_songs = number_of_songs
+        self.album_artist = album_artist
+    
+    def __str__(self):
+        return f"({self.album_name}, {self.album_artist}, {self.number_of_songs})"
+
+# Creating a list of albums
+albums = [
+    Album("Positions", 17, "Ariana Grande"),
+    Album("Thriller", 9, "Michael Jackson"),
+    Album("After Hours", 10, "The Weeknd"),
+    Album("The Dark Side of the Moon", 10, "Pink Floyd"),
+    Album("Blond", 11, "Frank Ocean")
+]
+
+# Printing the original list of albums
+print("Original list of albums:")
+for album in albums:
+    print(album)
+
+# Sorting the list according to the number of songs
+albums.sort(key=lambda x: x.number_of_songs)
+print("\nSorted list of albums by number of songs:")
+for album in albums:
+    print(album)
+
+# Swapping elements at positions 1 and 2
+albums[1], albums[2] = albums[2], albums[1]
+print("\nList of albums after swapping elements at positions 1 and 2:")
+for album in albums:
+    print(album)
+
+# Creating a new list of albums
+albums2 = [
+    Album("Take Care", 5, "Drake"),
+    Album("CTRL", 8, "Sza"),
+    Album("A Night at the Opera", 12, "Queen"),
+    Album("Mama's Gun", 13, "Erykah Badu"),
+    Album("Training Day", 5, "Potter Payper")
+]
+
+# Copying albums from albums2 to albums
+albums.extend(albums2)
+
+# Adding two new albums
+albums.append(Album("Dark Side of the Moon", 9, "Pink Floyd"))
+albums.append(Album("Oops!... I Did It Again", 16, "Britney Spears"))
+
+# Sorting albums alphabetically by album name
+albums.sort(key=lambda x: x.album_name)
+print("\nSorted list of albums alphabetically by album name:")
+for album in albums:
+    print(album)
+
+# Searching for "Dark Side of the Moon" and printing its index
+for i, album in enumerate(albums):
+    if album.album_name == "Dark Side of the Moon":
+        print("\nIndex of 'Dark Side of the Moon' in the list:", i)
+
+-------- NEW CODE ---------
+
+def adding_up_to(lst, index):
+    if index == 0:
+        return lst[0]
+    else:
+        return lst[index] + adding_up_to(lst, index - 1)
+
+# Test cases
+print(adding_up_to([1, 4, 5, 3, 12, 16], 4))  # Output: 25
+print(adding_up_to([4, 3, 1, 5], 1))          # Output: 7
