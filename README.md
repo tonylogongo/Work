@@ -279,3 +279,83 @@ def adding_up_to(lst, index):
 # Test cases
 print(adding_up_to([1, 4, 5, 3, 12, 16], 4))  # Output: 25
 print(adding_up_to([4, 3, 1, 5], 1))          # Output: 7
+
+---------- NEW CODE -------------
+
+class Email:
+    def __init__(self, email_address, subject_line, email_content):
+        self.email_address = email_address
+        self.subject_line = subject_line
+        self.email_content = email_content
+        self.has_been_read = False
+
+    def mark_as_read(self):
+        self.has_been_read = True
+
+# Initialize an empty list to store email objects
+inbox = []
+
+def populate_inbox(email_address, subject_line, email_content):
+    email = Email(email_address, subject_line, email_content)
+    inbox.append(email)
+
+def read_email(index):
+    try:
+        email = inbox[index]
+        email.mark_as_read()
+        print(f"\nEmail from: {email.email_address}")
+        print(f"Subject: {email.subject_line}")
+        print(f"Content: {email.email_content}")
+        print(f"Email from {email.email_address} marked as read.\n")
+    except IndexError:
+        print("Invalid index. Please select a valid email number.\n")
+
+def view_unread_emails():
+    print("\nUnread Emails:")
+    unread_emails = [email for email in inbox if not email.has_been_read]
+    if not unread_emails:
+        print("No unread emails.\n")
+    else:
+        for index, email in enumerate(unread_emails):
+            print(f"{index + 1}: {email.subject_line}")
+    print("---")
+
+def list_emails():
+    print("\nInbox:")
+    for index, email in enumerate(inbox):
+        status = "Read" if email.has_been_read else "Unread"
+        print(f"{index + 1}: {email.subject_line} ({status})")
+    print("---")
+
+def email_menu():
+    while True:
+        print("\nEmail Menu:")
+        print("1. Read an email")
+        print("2. View unread emails")
+        print("3. List all emails")
+        print("4. Quit")
+
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            list_emails()
+            try:
+                index = int(input("Enter the number of the email you want to read: ")) - 1
+                read_email(index)
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        elif choice == '2':
+            view_unread_emails()
+        elif choice == '3':
+            list_emails()
+        elif choice == '4':
+            print("Quitting the application.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+# Example usage:
+populate_inbox('tonylogongo@icloud.com', 'Please Work', 'Oh look it worked!')
+populate_inbox('hyperiondev@example.com', 'Welcome to Hyperion Dev', 'Welcome!')
+populate_inbox('YPE@example.com', 'Meeting Reminder', 'Don\'t forget the meeting at 10 AM tomorrow.')
+
+email_menu()
